@@ -1,0 +1,348 @@
+/*
+	** 본인이 그리고 싶은 것을 자유롭게 그려주시면 됩니다.
+	애니메이션은 5가지 이상 만들어서 적용해주세요.
+
+	1. background색을 원하는 색으로 넣어주세요.
+
+	2. 새의 몸통을 원하는대로 꾸며주세요.
+	- 센터정렬하면서 중앙보다 살짝 더 아래 위치하게 해주세요.
+
+	3. 새의 눈을 꾸며주세요.
+	- 가상클래스를 이용하여 눈물 혹은 선글라스 등의 장식도 만들어주세요.
+
+	4. 입을 만들어주세요.
+
+	5. 날개를 만들어주세요.
+
+	6. 가상클래스를 이용하여 꼬리를 만들어주세요.
+
+	7. 애니메이션을 마음껏 걸어주세요.
+
+*/
+body {
+	background-color: skyblue; /* 배경을 하늘색으로 설정 */
+    overflow: hidden; /* 구름이 화면 밖으로 나가도 스크롤 방지 */
+    margin: 0; /* 기본 여백 제거 */
+}
+
+.birdBody {
+    background: red;
+    width: 150px;
+    height: 150px;
+    animation: flyRightFast 4s linear infinite; /* 2초 동안 오른쪽으로 이동 */
+    position: absolute; /* 절대 위치 */
+    left: -500px; /* 화면 왼쪽 밖에서 시작 */
+    top: 40%; /* 고정된 수직 위치 */
+    border: 1px solid black;
+    border-radius: 60px 60px 10px 10px;
+}
+
+.left-eyebrow {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black; /* 삼각형 색상 */
+    transform: rotate(15deg); /* 약간 위로 올려서 화난 느낌 */
+
+}
+
+.right-eyebrow {
+	position: absolute;
+	top: 20px;
+	left: 85px;
+	width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black; /* 삼각형 색상 */
+    transform: rotate(-15deg); /* 약간 위로 올려서 화난 느낌 */
+
+}
+
+.left-eye {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+	border: 1px solid black;
+    border-radius: 50%; /* 둥근 형태 */
+    top: 45px; /* 위치 아래로 이동 */
+	left: 30px;
+}
+
+.right-eye {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: white;
+	border: 1px solid black;
+    border-radius: 50%; /* 둥근 형태 */
+    top: 45px; /* 위치 아래로 이동 */
+	left: 80px;
+}
+
+.pupil {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    border-radius: 50%; /* 둥근 형태 */
+    top: 50%; /* 부모의 중앙으로 이동 */
+    left: 50%; /* 부모의 중앙으로 이동 */
+    transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+}
+
+.beak {
+    position: absolute;
+    top: 90px; /* 위치 조정 */
+    left: 50%;
+    transform: translate(-50%, 0); /* 중앙 정렬 */
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent; /* 왼쪽 투명 */
+    border-right: 20px solid transparent; /* 오른쪽 투명 */
+    border-top: 30px solid orange; /* 위쪽 삼각형 (부리) */
+}
+
+/* 벼슬 스타일 */
+.crest {
+    position: absolute;
+    top: -20px; /* 몸통 위로 위치 */
+    left: 50%;
+    transform: translate(-50%, 0); /* 중앙 정렬 */
+    width: 0;
+    height: 0;
+}
+
+.crest .triangle1 {
+    position: absolute;
+    top: -15px;
+    left: -40px; /* 첫 번째 삼각형의 위치 */
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black; /* 삼각형 색상 */
+    transform: rotate(-200deg); /* 약간 위로 올려서 화난 느낌 */
+    animation: crest-wipe-left 1s ease-in-out infinite; /* 좌우 와이퍼 애니메이션 */
+}
+
+.crest .triangle2 {
+    position: absolute;
+    top: -10px;
+    left: 0px; /* 첫 번째 삼각형의 위치 */
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid black; /* 삼각형 색상 */
+    transform: rotate(-15deg); /* 약간 위로 올려서 화난 느낌 */
+	animation: crest-wipe-right 1s ease-in-out infinite; /* 좌우 와이퍼 애니메이션 */
+}
+
+.wing {
+    position: absolute;
+    width: 80px; /* 날개의 너비 */
+    height: 100px; /* 날개의 높이 */
+    background-color: red; /* 날개의 색상 */
+    border: 1px solid black; /* 날개 테두리 */
+    border-radius: 50%; /* 타원형 날개 */
+    transform-origin: center top; /* 회전 중심 설정 */
+    z-index: 5; /* 몸통 위에 위치 */
+}
+
+/* 왼쪽 날개 스타일 */
+.wing.left {
+    left: -40px; /* 몸통 기준 왼쪽 위치 */
+    top: 40px; /* 몸통 기준 위쪽 위치 */
+    transform: rotate(-45deg); /* 초기 기울기 */
+    animation: flap-left 0.3s ease-in-out infinite; /* 왼쪽 날개 파닥파닥 애니메이션 */
+}
+
+/* 오른쪽 날개 스타일 */
+.wing.right {
+    right: -35px; /* 몸통 기준 오른쪽 위치 */
+    top: 40px; /* 몸통 기준 위쪽 위치 */
+    transform: rotate(45deg); /* 초기 기울기 */
+    animation: flap-right 0.3s ease-in-out infinite; /* 오른쪽 날개 파닥파닥 애니메이션 */
+}
+
+
+
+@keyframes flyRightFast {
+    0% {
+        left: -200px; /* 화면 왼쪽 밖에서 시작 */
+        transform: rotate(0deg);
+    }
+    25% {
+        left: 25%; /* 화면의 25% 지점 */
+        top: 38%; /* 살짝 올라감 */
+        transform: rotate(5deg);
+    }
+    50% {
+        left: 50%; /* 화면 중앙 */
+        top: 40%; /* 원래 높이 */
+        transform: rotate(0deg);
+    }
+    75% {
+        left: 75%; /* 화면의 75% 지점 */
+        top: 42%; /* 살짝 내려감 */
+        transform: rotate(-5deg);
+    }
+    100% {
+        left: 100vw; /* 화면 오른쪽 끝 밖으로 사라짐 */
+        top: 40%; /* 고정된 수직 위치 */
+        transform: rotate(0deg);
+    }
+}
+
+/* 왼쪽 날개 애니메이션 */
+@keyframes flap-left {
+    0%, 100% {
+        transform: rotate(-45deg); /* 초기 기울기 */
+    }
+    50% {
+        transform: rotate(70deg); /* 위로 올라가는 기울기 */
+    }
+}
+
+/* 오른쪽 날개 애니메이션 */
+@keyframes flap-right {
+    0%, 100% {
+        transform: rotate(45deg); /* 초기 기울기 */
+    }
+    50% {
+        transform: rotate(-70deg); /* 위로 올라가는 기울기 */
+    }
+}
+
+/* 첫 번째 삼각형 와이퍼 애니메이션 */
+@keyframes crest-wipe-left {
+    0% {
+        transform: translateX(-10px) rotate(-50deg);
+    }
+    50% {
+        transform: translateX(10px) rotate(-40deg);
+    }
+    100% {
+        transform: translateX(-10px) rotate(-50deg);
+    }
+}
+
+/* 두 번째 삼각형 와이퍼 애니메이션 */
+@keyframes crest-wipe-right {
+    0% {
+        transform: translateX(10px) rotate(-15deg);
+    }
+    50% {
+        transform: translateX(-10px) rotate(-35deg);
+    }
+    100% {
+        transform: translateX(10px) rotate(-15deg);
+    }
+}
+
+
+
+
+
+/* 구름 공통 스타일 */
+.cloud {
+    position: absolute;
+    background-color: white; /* 구름 색상 */
+    border-radius: 50%; /* 구름을 둥글게 */
+    opacity: 0.9; /* 살짝 투명하게 */
+    animation: moveCloudFast 5s linear infinite; /* 구름 이동 애니메이션 */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1); /* 약간의 그림자 추가 */
+	border: 1px solid black;
+}
+
+/* 구름 애니메이션 키프레임 */
+@keyframes moveCloudFast {
+    0% {
+        transform: translateX(-200%); /* 화면 왼쪽 밖에서 시작 */
+    }
+    100% {
+        transform: translateX(200vw); /* 화면 오른쪽 밖으로 사라짐 */
+    }
+}
+
+/* 각각의 구름 크기 및 위치 조정 */
+.cloud1 {
+    width: 100px;
+    height: 60px;
+    top: 10%; /* 화면의 10% 지점 */
+    left: -150px; /* 왼쪽 화면 밖 */
+    animation-duration: 7s; /* 더 빠르게 */
+}
+
+.cloud2 {
+    width: 150px;
+    height: 80px;
+    top: 30%; /* 화면의 30% 지점 */
+    left: -200px;
+    animation-duration: 9s; /* 구름 이동 속도 */
+}
+
+.cloud3 {
+    width: 80px;
+    height: 50px;
+    top: 50%; /* 화면의 50% 지점 */
+    left: -100px;
+    animation-duration: 11s; /* 가장 빠르게 이동 */
+}
+
+.cloud4 {
+    width: 120px;
+    height: 70px;
+    top: 15%; /* 화면의 15% 지점 */
+    left: -250px; /* 화면 왼쪽 밖 */
+    animation-duration: 15s; /* 이동 속도 */
+}
+
+.cloud5 {
+    width: 90px;
+    height: 60px;
+    top: 25%; /* 화면의 25% 지점 */
+    left: -180px; /* 화면 왼쪽 밖 */
+    animation-duration: 9s; /* 이동 속도 */
+}
+
+.cloud6 {
+    width: 110px;
+    height: 65px;
+    top: 35%; /* 화면의 35% 지점 */
+    left: -230px; /* 화면 왼쪽 밖 */
+    animation-duration: 10s; /* 이동 속도 */
+}
+
+.cloud7 {
+    width: 100px;
+    height: 50px;
+    top: 45%; /* 화면의 45% 지점 */
+    left: -200px; /* 화면 왼쪽 밖 */
+    animation-duration: 12s; /* 이동 속도 */
+}
+
+.cloud8 {
+    width: 140px;
+    height: 80px;
+    top: 55%; /* 화면의 55% 지점 */
+    left: -270px; /* 화면 왼쪽 밖 */
+    animation-duration: 13s; /* 이동 속도 */
+}
+
+.cloud9 {
+    width: 140px;
+    height: 80px;
+    top: 80%; /* 화면의 55% 지점 */
+    left: -270px; /* 화면 왼쪽 밖 */
+    animation-duration: 8s; /* 이동 속도 */
+}
+
+
+
